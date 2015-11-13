@@ -8,5 +8,5 @@ if(!$_POST)
 	$ListaTareas=Tareas();
 	
 	
-	include "\\..\\Vistas\\form_Inicio.php";
+	include "\\..\\Vistas\\form_Vista.php";
 }
