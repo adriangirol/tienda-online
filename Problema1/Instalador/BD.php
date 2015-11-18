@@ -184,4 +184,18 @@ Class Database {
 		return $return;
 
 	}
+	function BorrarUnRegistro($table,$id)
+	{
+		$query="DELETE  FROM ".$table." where idtarea=".$id.";";
+		$this->Consulta($query);
+	}
+	
+	function Actualizar_UnCampo($table,$id,$campo,$nuevovalor,$referencia)
+	{
+		
+			$query="UPDATE ". $table ." SET ". $campo." = '".$nuevovalor."' WHERE " .$referencia." = ".$id.";";
+			echo $query;
+			$this->Consulta($query);
+	}
+		
 }

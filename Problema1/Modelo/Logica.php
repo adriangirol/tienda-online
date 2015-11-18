@@ -33,3 +33,19 @@ function NombreProvincias($id)
 
 	return $registro['nombre'];
 }
+
+function InsertaTarea($campos)
+{
+	$bd=Database::getInstance();
+	$bd->Insertar("tarea", $campos);
+}
+
+function BorrarTarea($id)
+{
+	$bd=Database::getInstance();
+	$bd->BorrarUnRegistro("tarea", $id);
+}
+function CompletarTarea($id){
+	$bd=Database::getInstance();
+	$bd->Actualizar_UnCampo("tarea", $id, "estado", "Completado", "idtarea");
+}

@@ -1,20 +1,22 @@
 <?php
 
-include_once "\\..\\Modelo\\logica.php";
 
- $provincias=[];
- $provincias=obtenerProvincias();
+
+$provincias=[];
+$provincias=obtenerProvincias();
  
 $HayError=false;
 $errores=[];
+include_once "\\..\\Modelo\\logica.php";
 include_once "..\\Controlador\\Utilidades.php";
+include_once '\\..\\Controlador\\Help_alta_control.php';
 if(!$_POST)
 {
 	include "\\..\\Vistas\\form_insert.php";
 }
 else 
 {
-	include_once '\\..\\Controlador\\Help_alta_control.php';
+	
 	$patronTLF= '/^[9|6|7][0-9]{8}$/';
 	$patronCP='/[0-9]{5}/';
 	
@@ -92,8 +94,7 @@ else
 	}
 	else 
 	{
-		$bd=Database::getInstance();
-		$bd->Insertar("tarea", $campos);
+		InsertaTarea($campos);
 		include "\\..\\Vistas\\form_insert.php";
 		
 	}
