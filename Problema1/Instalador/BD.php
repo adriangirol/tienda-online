@@ -1,7 +1,7 @@
 <?php
 
-// Datos de configuraciónn.
-include_once '\\..\\Modelo\\datosServidor.php';
+// Datos de configuraciï¿½nn.
+include_once '\\Model\\datosServidor.php';
 /* Clase encargada de gestionar las conexiones a la base de datos */
 Class Database {
 
@@ -33,7 +33,7 @@ Class Database {
 	{
 		if (! is_array($conf))
 		{
-			echo "<p>Faltan parametros de configuración</p>";
+			echo "<p>Faltan parametros de configuraciï¿½n</p>";
 			var_dump($conf);
 			// Puede que no se requiera ser tan 'expeditivos' y que lanzar una excepcion sea mas versatil
 			exit();
@@ -156,7 +156,7 @@ Class Database {
 	 * @param string $query
 	 * @return boolean
 	 */
-	public function update( $table, $where = '1=1', $query = 'main' ) {
+	public function update( $table, $where = '1=1' ) {
 
 		$return = false;
 		$values=array();
@@ -179,7 +179,7 @@ Class Database {
 			$qry .= $campos[$ct] . '=' . '"' . $values[$ct] . '"';
 		}
 		$qry .= ' ' . $where;
-		$return = $this->Consulta( $qry, $query );
+		$return = $this->Consulta($qry);
 
 		return $return;
 
@@ -194,7 +194,6 @@ Class Database {
 	{
 		
 			$query="UPDATE ". $table ." SET ". $campo." = '".$nuevovalor."' WHERE " .$referencia." = ".$id.";";
-			echo $query;
 			$this->Consulta($query);
 	}
 		

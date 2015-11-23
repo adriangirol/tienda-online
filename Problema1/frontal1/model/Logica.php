@@ -3,12 +3,39 @@
 
 include_once '\\..\\Instalador\\BD.php';
 
+function Tareas($posIni,$PROXPAG){
+	
+	
+	$tareas=[];
+	$MyBD=Database::getInstance();
+	$result=[];
+	$query="Select * FROM BD_PGARDEN.tarea LIMIT $posIni,".$PROXPAG;
+	$result=$MyBD-> Consulta($query);
+
+	while($linea = $MyBD -> LeeRegistro($result))
+	{
+		$tareas[]=$linea;
+	}
+
+	return $tareas;
+}
+
+function NRegistros()
+{
+	$MyBD=Database::getInstance();
+	$query ="SELECT count(*) as total FROM tarea";
+	$result=$MyBD-> Consulta($query);
+	$reg=mysqli_fetch_assoc($result);
+	return $reg['total'];
+}
 
 
 function obtenerProvincias(){
+
+
 $a=[];
 $bdatos=Database::getInstance();
-$a=$bdatos ->Consulta("SELECT p.cod , p.nombre from bd_pgarden.tbl_provincias p");
+$a=$bdatos ->Consulta("SELECT p.cod , p.nombre from bd_pgarden.tbl_provincias p ");
 
 while ($line= mysqli_fetch_array($a,MYSQL_ASSOC))
 {

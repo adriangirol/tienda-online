@@ -22,11 +22,14 @@ Seguimiento :
 13/11/2015 --> Corregido el error de fechas, no hacer datapicker. codigo "Ordenado" sin comprobar.
 
 -- Semana : 
-	- Controlador Frontal -->
+	- Controlador Frontal --> En proceso
 	- Borrar --> Ok!* Falta Preguntar , y Mostrar Mensaje de Borrado Correcto.* 
 	- Completado --> Ok!
 	- Paginacion -->
 
 
 16/11/2015 --> Terminada la tareas de borrar y la accion de completado.
-18/11/2015 -->
+18/11/2015 --> Casi Insertado en el controlador Frontal, Falta Modificar,
+				encontrado error a la hora de mostrar los errores en la inserccion.
+19/11/2015 --> Corregido el error en la inserccion. Terminado controlador frontal con la correccion
+				de errores de vistas.

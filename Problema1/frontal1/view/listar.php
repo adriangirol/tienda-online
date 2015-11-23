@@ -1,16 +1,17 @@
-<meta charset="UTF-8">
-<title>Listado de tareas</title>
-<head>
+<?php
+/**
+ * VISTA QUE MUESTA LA LISTA DE TAREAS.
+ * El controlador será el que nos proporcine en la variable $tareas
+ * que contiene las tareas a mostrar
+ */
+?>
+
 	
 	<?php include_once "Help_form_Vista.php"?>
-	<link rel="stylesheet" type="text/css" src="\\..\\css\\style.css">
-	 <link rel="stylesheet" type="text/css" 
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css"
-	 href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-</head>
-<body>
-	<h1> LISTA DE TAREAS </h1>
+	
+
+
+	
 	<div class="table-responsive">
 	<table class="table">
 	
@@ -32,7 +33,15 @@
 			<td>Operario</td>
 			
 			<?= ListarTareas($ListaTareas)?>
+		<footer>
+			<P>
+				<?php if ($pag>1): ?>
+				<a href="?ctrl=listar&pag=<?=$pag-1?>"><input class="btn btn-warning" type="button"  value ="Atras"></input></a>
+				<?php endif; ?>
+				<?php if ($pag<$maxPag-1) :?> 
+				<a href="?ctrl=listar&pag=<?=$pag+1?>"><input class="btn btn-warning" type="button"  value ="Siguiente"></input></a>
+				<?php endif;?>
+			</P>
+		</footer>	
 	</table>
 	</div>
-</body>
-</html>

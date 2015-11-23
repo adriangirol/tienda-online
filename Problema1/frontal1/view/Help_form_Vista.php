@@ -15,7 +15,7 @@ function ListarTareas($tareas)
 			if($clave == 'idtarea')
 				$id = $value;
 			else if($clave == 'provincia'){
-				//Para escribir el nombre de la provincia y no el código
+				//Para escribir el nombre de la provincia y no el cï¿½digo
 				echo '<td>'.NombreProvincias($value).'</td>';}
 				else if($clave == 'f_creacion' || $clave == 'f_fin'){ //Cambiar formato a ddmmyyyy
 					$date = new DateTime($value);
@@ -27,11 +27,11 @@ function ListarTareas($tareas)
 
 		echo '<td>';
 
-		echo '<p><a href="completartarea.php?id='.$id.'" class="btn btn-primary btn-success" title="Completar tarea">Completar</a></p>';
+		echo '<p><a href="?id='.$id.'&ctrl=CompletarTarea"" class="btn btn-primary btn-success" title="Completar tarea">Completar</a></p>';
 
 		echo '<p><a href="/Practica_Trimestre_1/Problema1/Controlador/CompletarTarea.php?id='.$id.'"class="btn btn-warning" title="Modificar Tarea">Modificar</a></p>';
 
-		echo '<a href="/Practica_Trimestre_1/Problema1/Controlador/BorrarTareas.php?id='.$id.'" class="btn btn-danger" title="Eliminar" onClick="Informe()">Eliminar</a>';
+		echo '<a href="?id='.$id.'&ctrl=del"" class="btn btn-danger" title="Eliminar" onClick="Informe()">Eliminar</a>';
 		
 		echo '</td>';
 		echo '</tr>';

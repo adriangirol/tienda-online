@@ -2,31 +2,37 @@
 
 
 
+
+$HayError=false;
+$errores=[];
+include_once "\\..\\Model\\logica.php";
+include_once "\\Utilidades.php";
+include_once '\\Help_alta_control.php';
+include_once"\\Helpers\\form.php";
 $provincias=[];
 $provincias=obtenerProvincias();
  
-$HayError=false;
-$errores=[];
-include_once "\\..\\Modelo\\logica.php";
-include_once "..\\Controlador\\Utilidades.php";
-include_once '\\..\\Controlador\\Help_alta_control.php';
 if(!$_POST)
 {
-	include "\\..\\Vistas\\form_insert.php";
+	include "\\View\\form_insert.php";
 }
 else 
 {
 	
 	$patronTLF= '/^[9|6|7][0-9]{8}$/';
 	$patronCP='/[0-9]{5}/';
-	
-	if(!isset($_POST['Descr']))
+	//Comprobamos que los campos cumplan su formato y no esten vacios.
+	$descripcion=VPost($_POST['Descr'],'');
+
+	if($descripcion=="")
 	{
 		$HayError=true;
-		$errores['Descr']= "Error en el campo descripcion.";;
+		$errores['Descr']= "Error en el campo descripcion.";
 	}
 	
-	if(!isset($_POST['nombre']))
+	$nombre=VPost($_POST['nombre'],'');
+
+	if($nombre=="")
 	{
 		$HayError=true;
 		$errores['nombre']= "Error en el campo Nombre.";
@@ -37,7 +43,9 @@ else
 		$errores['fecha_f']= "Error en el campo Fecha Fin. Formato fecha dd/mm/yyyy";
 		
 	}
-	if(!isset($_POST['provincia']))
+	$pro=VPost($_POST['provincia'],'');
+
+	if($pro=="")
 	{
 		$HayError=true;
 		$errores['provincia']= "Error en el campo Provincia.";
@@ -48,21 +56,28 @@ else
 		$HayError=true;
 		$errores['ESTADO']= "Error en el campo Estado.";
 	}
-	if(!isset($_POST['correo']))
+	$correo=VPost($_POST['correo'],'');
+
+	if($correo=="")
 	{
 		$HayError=true;
 		$errores['correo']= "Error en el campo Correo.";
-	}	
-	if(!isset($_POST['direccion']))
+	}
+	$dir=VPost($_POST['direccion'],'');
+
+	if($dir=="")
 	{
 		$HayError=true;
 		$errores['direccion']= "Error en el campo Direccion.";
 	}
-	if(!isset($_POST['ope']))
+	$o=VPost($_POST['ope']);
+
+	if($o=="")
 	{
 		$HayError=true;
 		$errores['ope']= "Error en el campo Operario.";
 	}
+	//Campo opcional.
 	if(!isset($_POST['anoA']))
 	{
 		$HayError=true;
@@ -90,12 +105,12 @@ else
 	
 	if($HayError)
 	{
-		include_once "\\..\\Vistas\\form_insert.php";
+		include_once "\\..\\View\\form_insert.php";
 	}
 	else 
 	{
 		InsertaTarea($campos);
-		include "\\..\\Vistas\\form_insert.php";
+		include "\\..\\View\\form_insert.php";
 		
 	}
 	

@@ -1,31 +1,24 @@
-<html>
-<head>
 
-	<meta charset="UTF-8">
-	<title>Entrada</title>
-    <link rel="stylesheet" type="text/css" 
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css"
-	 href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-   <?php include_once "\\..\\Controlador\\Utilidades.php"; 
-   			include_once "\\..\\Modelo\\Logica.php";?>
-</head>
+   <?php include_once "\\ctrl\\Utilidades.php"; 
+   		 include_once "\\Model\\Logica.php";
+   		?>
 
-	<body>
-	<? if ($hayError) :?>
-	<div style="border: 1px solid #ccc; color: red"><ul>
+
+	
+	<?php if ($HayError) :?>
+		<div style="border: 1px solid #ccc; color: red; text-align:left;"><ul>
 	<?php foreach($errores as $textoError) {
-		echo "<li>".$textoError."</li>";
-	}
+		echo "<ul>".$textoError."</ul>";
+		}
 	?>
-	</ul></div>
-	<? endif;?>
-<form action="../Controlador/alta_control.php" method="POST">
+		</ul></div>
+	<?php endif;?>
+<form method="POST">
 
 			
-			<h1>DATOS DE LA TAREA</h1>
 			
-<table class="form-inline">
+			
+<table class="form-inline" align="center">
 				
 				<tr>
 				
@@ -38,12 +31,12 @@
 	    		
 	    		<tr>
 	    			<td><label for="exampleInputCP">C.Postal</label></td>
-	    			<td><input type="text" class="form-control" id="exampleInputEmail1" maxlength="5" name="CP" value="<?php Post('CP')?>"></td>
+	    			<td><input type="text" class="form-control" id="exampleInputEmail1" maxlength="5" name="CP" value="<?= Post('CP')?>"></td>
 	    		
 	    		<tr>
 		        <tr>
 		        	<td><label for="exampleInputFF">Fecha fin :</label></td>
-		        	<td><input type="text" class="form-control" id="datepicker" maxlength="10" name="fecha_f" value="<?php Post('fecha_f')?>"> </td>
+		        	<td><input type="text" class="form-control" id="datepicker" maxlength="10" name="fecha_f" value="<?= Post('fecha_f')?>"> </td>
 					</td>
 				<tr>	
 		        <tr>
@@ -54,33 +47,33 @@
         		<tr>
         		<tr>
 		    		<td><label for="exampleInputC">Contacto</label></td>
-		    		<td><input name ="nombre" type="text" class="form-control" id="nom" value="<?php Post('nom')?>"> </td>
+		    		<td><input name ="nombre" type="text" class="form-control" id="nom" value="<?= Post('nom')?>"> </td>
   				<tr>
   				<tr>
 		  			<td><label for="exampleInputtlf">Telefono</label></td>
-		    		<td><input name="tlf" type="text" class="form-control" id="tlf" placeholder="debe insertar 9 digitos" value="<?php Post('tlf')?>"> </td>
+		    		<td><input name="tlf" type="text" class="form-control" id="tlf" placeholder="debe insertar 9 digitos" value="<?= Post('tlf')?>"> </td>
     			<tr>
     			<tr>
 		    		<td><label for="inputEmail3">Email</label></td>
-					<td><input name="correo" type="email" class="form-control" id="correo" placeholder="example@example.com" value="<?php Post('correo')?>"></td>
+					<td><input name="correo" type="email" class="form-control" id="correo" placeholder="example@example.com" value="<?= Post('correo')?>"></td>
     			<tr>
     			<tr/>
 		  			<td><label for="exampleInputD">Direccion</label></td>
-		    		<td><input name="direccion" type="text" class="form-control" id="direccion" placeholder="Calle / Numero" value="<?php Post('direccion')?>"></td>
+		    		<td><input name="direccion" type="text" class="form-control" id="direccion" placeholder="Calle / Numero" value="<?=Post('direccion')?>"></td>
     			<tr>
     			
     			<tr/>
 		  			<td><label for="exampleInputO">Operario</label></td>
-		    		<td><input name="ope" type="text" class="form-control" id="ope" value="<?php Post('ope')?>"></td>	
+		    		<td><input name="ope" type="text" class="form-control" id="ope" value="<?= Post('ope')?>"></td>	
     			<tr>
     			<tr>
 					<td><label for="exampleInputDescripcion">Descripcion</label></td>
-					<td><textarea class="form-control" rows="4" name="Descr" ><?php Post('Descr')?></textarea></td>
+					<td><textarea class="form-control" rows="4" name="Descr" ><?= Post('Descr')?></textarea></td>
 				<tr/>
 				<tr>
 					<td><label for="exampleInputAno">Anotacion</label></td>
 					<td><textarea class="form-control" rows="4" name="anoA" placeholder=" Datos de interes" >
-								<?php Post('anoA')?>
+								<?= Post('anoA')?>
 						</textarea>
 					</td>
 				<tr>
@@ -103,5 +96,4 @@
 		<input class="btn btn-default" type="submit" value="GUARDAR">
 		
 </form>	
-	</body>
-</html>
+</body>
