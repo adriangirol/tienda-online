@@ -25,7 +25,7 @@ Seguimiento :
 	- Controlador Frontal --> En proceso
 	- Borrar --> Ok!* Falta Preguntar , y Mostrar Mensaje de Borrado Correcto.* 
 	- Completado --> Ok!
-	- Paginacion -->
+	- Paginacion --> Ok!
 
 
 16/11/2015 --> Terminada la tareas de borrar y la accion de completado.
@@ -33,3 +33,11 @@ Seguimiento :
 				encontrado error a la hora de mostrar los errores en la inserccion.
 19/11/2015 --> Corregido el error en la inserccion. Terminado controlador frontal con la correccion
 				de errores de vistas.
+
+-- Semana :
+	- Modificar -->
+	- Sesion -->
+	- Usuarios --> 
+	
+23/11/2015 --> Terminado el Form de modificar, falta comprobar la modificacion. y Ver si de verdad Modifica.
+			Tambien he cambiado y borrado algunas vistas, y controladores innecesarios como Help_Listar en vistas.

@@ -76,3 +76,17 @@ function CompletarTarea($id){
 	$bd=Database::getInstance();
 	$bd->Actualizar_UnCampo("tarea", $id, "estado", "Completado", "idtarea");
 }
+function ModificarTarea($campos){
+	$bd=Database::getInstance();
+	$bd->update("tarea", $campos);
+}
+function BuscarRegistro($id)
+{
+	$sql="SELECT * FROM bd_pgarden.tarea WHERE idtarea=$id";
+	echo $sql;
+	$bd=Database::getInstance();
+	$res=$bd->Consulta($sql);
+	$registro=$bd ->LeeRegistro();
+	
+	return $registro;
+}

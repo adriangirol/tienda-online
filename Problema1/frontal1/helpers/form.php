@@ -23,3 +23,23 @@ function VPost($campo, $default='')
         return $default;
     }
 }
+function CreaArrayTareas($descripcion,$nombre,$tlf,$fin,$correo,$estado,$poblacion,$cp,$direccion,$provincia,$anoA,$anoF="",$operario){
+
+	$Array=array(
+			'descripcion'=>$descripcion,
+			'nombre_e'=>$nombre,
+			'TLF'=>$tlf,
+			'f_fin'=>$fin,
+			'correo'=>$correo,
+			'estado'=>$estado,
+			'poblacion'=>$poblacion,
+			'cp'=>$cp,
+			'direccion'=>$direccion,
+			'provincia'=>$provincia,
+			'anoA'=>$anoA,
+			'anoF'=>$anoF,
+			'operario'=> $operario
+	);
+
+	return $Array;
+}

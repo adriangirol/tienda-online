@@ -156,7 +156,7 @@ Class Database {
 	 * @param string $query
 	 * @return boolean
 	 */
-	public function update( $table, $where = '1=1' ) {
+	public function update( $table, $registro,$where = '1=1' ) {
 
 		$return = false;
 		$values=array();
