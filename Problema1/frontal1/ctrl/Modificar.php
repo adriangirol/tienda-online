@@ -7,36 +7,38 @@ include_once "\\Utilidades.php";
 include_once"\\Helpers\\form.php";
 $provincias=[];
 $provincias=obtenerProvincias();
+
 if(!$_POST)
 {
+	
 	$tarea=BuscarRegistro($_GET['id']);
 	print_r($tarea);
+	$provincia=$tarea['provincia'];
+	echo $provincia;
 	include "\\View\\form_modificar.php";
 	
 }
 else
-{
-	
+{	$id=$_GET['id'];
+	$tarea=BuscarRegistro($_GET['id']);
+	$provincia=$tarea['provincia'];
 	$patronTLF= '/^[9|6|7][0-9]{8}$/';
 	$patronCP='/[0-9]{5}/';
 	
 	
 	
 	//Comprobamos que los campos cumplan su formato y no esten vacios.
-	$descripcion=VPost($_POST['Descr'],'');
-	
-	if($descripcion=="")
+
+	if($_POST['Descr']=="")
 	{
+		
 		$HayError=true;
 		$errores['Descr']= "Error en el campo descripcion.";
 	}
-	
-	$nombre=VPost($_POST['nombre'],'');
-	
-	if($nombre=="")
+	if($_POST['nombre']=="")
 	{
 		$HayError=true;
-		$errores['nombre']= "Error en el campo Nombre.";
+		$errores['nombre']= "Error en el campo Contacto.";
 	}
 	if(!isset($_POST['fecha_f']) || validar_fecha($_POST['fecha_f']))
 	{
@@ -44,9 +46,8 @@ else
 		$errores['fecha_f']= "Error en el campo Fecha Fin. Formato fecha dd/mm/yyyy";
 	
 	}
-	$pro=VPost($_POST['provincia'],'');
-	
-	if($pro=="")
+
+	if($_POST['provincia']=="")
 	{
 		$HayError=true;
 		$errores['provincia']= "Error en el campo Provincia.";
@@ -57,23 +58,22 @@ else
 		$HayError=true;
 		$errores['ESTADO']= "Error en el campo Estado.";
 	}
-	$correo=VPost($_POST['correo'],'');
-	
-	if($correo=="")
+
+	if($_POST['correo']=="")
 	{
 		$HayError=true;
 		$errores['correo']= "Error en el campo Correo.";
 	}
-	$dir=VPost($_POST['direccion'],'');
 	
-	if($dir=="")
+	
+	if($_POST['direccion']=="")
 	{
 		$HayError=true;
 		$errores['direccion']= "Error en el campo Direccion.";
 	}
-	$o=VPost($_POST['ope']);
+
 	
-	if($o=="")
+	if($_POST['ope']=="")
 	{
 		$HayError=true;
 		$errores['ope']= "Error en el campo Operario.";
@@ -91,6 +91,7 @@ else
 	}
 	if(!isset($_POST['CP']) || !preg_match($patronCP, $_POST['CP']))
 	{
+		
 		$HayError=true;
 		$errores['CP']= "Error en el campo Codigo postal.";
 	}
@@ -98,10 +99,10 @@ else
 	$fecha= TransformarFecha($_POST['fecha_f']);
 	//creamos un array con los campos recogidos y filtrados para su inserccion.
 	$campos=CreaArrayTareas($_POST['Descr'],$_POST['nombre'],$_POST['tlf'],$fecha, $_POST['correo'],
-			$_POST['ESTADO'], $_POST['Pobla'], $_POST['CP'],$_POST['direccion'],$_POST['provincia'],
+			$_POST['ESTADO'], $_POST['Pobla'], $_POST['CP'],$_POST['direccion'],$_POST['provincia'],'',
 			$_POST['anoF'],$_POST['ope']);
 	
-
+	
 	if($HayError)
 	{
 		include_once "\\..\\View\\form_modificar.php";
@@ -109,8 +110,8 @@ else
 	else
 	{
 		
-		ModificarTarea($campos);
-		include "\\..\\View\\form_modificar.php";
+		ModificarTarea($campos,$id);
+		include "\\..\\ctrl\\Listar.php";
 	
 	}
 }

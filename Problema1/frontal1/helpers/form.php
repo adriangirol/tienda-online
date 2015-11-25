@@ -23,7 +23,7 @@ function VPost($campo, $default='')
         return $default;
     }
 }
-function CreaArrayTareas($descripcion,$nombre,$tlf,$fin,$correo,$estado,$poblacion,$cp,$direccion,$provincia,$anoA,$anoF="",$operario){
+function CreaArrayTareas($descripcion,$nombre,$tlf,$fin,$correo,$estado,$poblacion,$cp,$direccion,$provincia,$anoA,$anoF,$operario){
 
 	$Array=array(
 			'descripcion'=>$descripcion,
@@ -37,7 +37,7 @@ function CreaArrayTareas($descripcion,$nombre,$tlf,$fin,$correo,$estado,$poblaci
 			'direccion'=>$direccion,
 			'provincia'=>$provincia,
 			'anoA'=>$anoA,
-			'anoF'=>$anoF,
+			'anoD'=>$anoF,
 			'operario'=> $operario
 	);
 

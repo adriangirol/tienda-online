@@ -8,7 +8,6 @@ $errores=[];
 include_once "\\..\\Instalador\\BD.php";
 include_once "\\..\\Model\\logica.php";
 include_once "\\Utilidades.php";
-include_once '\\Help_alta_control.php';
 include_once"\\Helpers\\form.php";
 $provincias=[];
 $provincias=obtenerProvincias();

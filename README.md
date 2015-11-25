@@ -35,9 +35,19 @@ Seguimiento :
 				de errores de vistas.
 
 -- Semana :
-	- Modificar -->
+	- Modificar --> OK!
 	- Sesion -->
 	- Usuarios --> 
 	
-23/11/2015 --> Terminado el Form de modificar, falta comprobar la modificacion. y Ver si de verdad Modifica.
-			Tambien he cambiado y borrado algunas vistas, y controladores innecesarios como Help_Listar en vistas.
+23/11/2015 --> Terminado el Form de modificar, falta comprobar la modificacion.
+ 				y Ver si de verdad Modifica.
+				Tambien he cambiado y borrado algunas vistas, 
+				y controladores innecesarios como Help_Listar en vistas.
+				
+				
+25/11/2015 --> 	 Terminado modificar, empezar Sesion y Usuarios, Documentar, Y mejorar Aspecto.	
+				
+				
+				
+				
+				

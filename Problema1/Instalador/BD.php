@@ -156,7 +156,7 @@ Class Database {
 	 * @param string $query
 	 * @return boolean
 	 */
-	public function update( $table, $registro,$where = '1=1' ) {
+	public function update( $table, $registro,$where ) {
 
 		$return = false;
 		$values=array();
@@ -176,7 +176,7 @@ Class Database {
 		for ($ct=0;$ct<$tot;$ct++) {
 			if ($ct > 0)
 				$qry .= ', ';
-			$qry .= $campos[$ct] . '=' . '"' . $values[$ct] . '"';
+			$qry .= $campos[$ct] . '=' . $values[$ct];
 		}
 		$qry .= ' ' . $where;
 		$return = $this->Consulta($qry);

@@ -10,7 +10,7 @@
 	?>
 		</ul></div>
 	<?php endif;?>
-<form method="POST">
+<form action="" method="POST">
 
 			
 			
@@ -39,16 +39,16 @@
 		        <tr>
 		        	<td><label>Provincia:</label></td>
 		        	
-		        	<td><?= CreaSelect('provincia',($provincias))?></td>
+		        	<td><?= CreaSelect('provincia',($provincias),$provincia)?></td>
 					</td>
         		<tr>
         		<tr>
 		    		<td><label for="exampleInputC">Contacto</label></td>
-		    		<td><input name ="nombre" type="text" class="form-control" id="nom" value="<?= $tarea['nombre_e']?>"> </td>
+		    		<td><input name ="nombre" type="text" class="form-control" id="nom" value="<?= $tarea['nombre_e']?>"></td>
   				<tr>
   				<tr>
 		  			<td><label for="exampleInputtlf">Telefono</label></td>
-		    		<td><input name="tlf" type="text" class="form-control" id="tlf" placeholder="debe insertar 9 digitos" value="<?= $tarea['TLF']?>"> </td>
+		    		<td><input name="tlf" type="text" class="form-control" id="tlf" placeholder="debe insertar 9 digitos" value="<?= $tarea['TLF']?>"></td>
     			<tr>
     			<tr>
 		    		<td><label for="inputEmail3">Email</label></td>

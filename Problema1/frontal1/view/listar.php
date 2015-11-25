@@ -60,7 +60,8 @@
 			echo '</td>';
 			echo '</tr>';
 		}
-		?>
+		?></table>
+		</div>
 		<footer>
 			<P>
 				<?php if ($pag>1): ?>
@@ -71,5 +72,4 @@
 				<?php endif;?>
 			</P>
 		</footer>	
-	</table>
-	</div>
+	
