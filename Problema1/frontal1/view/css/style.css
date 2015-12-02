@@ -3,3 +3,8 @@
 .Encabezado{
 	text-style: bold;
 		}
+		
+.usuario{
+	border:1px;
+	text-size: 12px;
+}

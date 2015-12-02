@@ -36,7 +36,7 @@ Seguimiento :
 
 -- Semana :
 	- Modificar --> OK!
-	- Sesion -->
+	- Sesion --> 
 	- Usuarios --> 
 	
 23/11/2015 --> Terminado el Form de modificar, falta comprobar la modificacion.
@@ -45,8 +45,14 @@ Seguimiento :
 				y controladores innecesarios como Help_Listar en vistas.
 				
 				
-25/11/2015 --> 	 Terminado modificar, empezar Sesion y Usuarios, Documentar, Y mejorar Aspecto.	
-				
+25/11/2015 -->Terminado modificar, empezar Sesion y Usuarios, Documentar, Y mejorar Aspecto.
+
+-- Semana :
+	- Sesion -->
+	- Usuarios --> 
+
+30/11/2015 --> Empezado el autenticado de usuarios, comprobar que funciona en alta. Y implementar lo demas.	
+02/12/2015 --> 
 				
 				
 				

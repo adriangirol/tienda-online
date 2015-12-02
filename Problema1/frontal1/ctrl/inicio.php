@@ -1,4 +1,14 @@
 <?php
 // En un controlador real esto haría más cosas
-include(VIEW_PATH.'inicio.php');
 
+include_once "\\..\\Model\\login.php";
+
+if(!$_POST)
+{
+	include_once '\\view\\inicio.php';
+}
+else
+{
+	ComprobarUsuario($_POST['USUARIO'],$_POST['PASS']);
+
+}
