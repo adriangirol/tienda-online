@@ -30,6 +30,7 @@ function NRegistros()
 }
 
 
+
 function obtenerProvincias(){
 
 
@@ -77,7 +78,9 @@ function CompletarTarea($id){
 	$bd->Actualizar_UnCampo("tarea", $id, "estado", "Completado", "idtarea");
 }
 function ModificarTarea($campos,$id){
+	
 	$bd=Database::getInstance();
+	echo $campos;
 	$bd->update("tarea", $campos, "WHERE idtarea=$id");
 }
 function BuscarRegistro($id)
@@ -89,4 +92,35 @@ function BuscarRegistro($id)
 	
 	return $registro;
 }
+
+function BuscarTareas($condicion, $posIni,$PROXPAG){
+	
+	$tareas=[];
+	$result=[];
+	$MyBD=Database::getInstance();
+	$query="Select * FROM BD_PGARDEN.tarea WHERE $condicion LIMIT $posIni,".$PROXPAG;
+	$result=$MyBD-> Consulta($query);
+	
+	while($linea = $MyBD -> LeeRegistro($result))
+	{
+		$tareas[]=$linea;
+	}
+	
+	return $tareas;
+
+}
+function Nregistrosfiltrados($condicion){
+	$MyBD=Database::getInstance();
+	$query="Select COUNT(*) as total FROM BD_PGARDEN.tarea WHERE $condicion";
+	$result=$MyBD-> Consulta($query);
+	$reg=mysqli_fetch_assoc($result);
+	return $reg['total'];
+}
+
+function ModificarAnotacion($anotacion,$id){
+
+	$bd=Database::getInstance();
+	$bd->Actualizar_UnCampo('tarea', $id, 'anoD', $anotacion, 'idtarea');
+}
+
 

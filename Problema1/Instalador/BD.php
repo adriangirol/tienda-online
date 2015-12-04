@@ -179,6 +179,7 @@ Class Database {
 			$qry .= $campos[$ct] . '=' . $values[$ct];
 		}
 		$qry .= ' ' . $where;
+		echo $qry;
 		$return = $this->Consulta($qry);
 
 		return $return;

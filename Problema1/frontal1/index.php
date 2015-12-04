@@ -20,9 +20,7 @@ define('VIEW_PATH', __DIR__.'/view/');
 define('TEMPLATE_PATH', __DIR__.'/plantilla/');
 define('LIB_PATH', __DIR__.'/lib/');
 define('HELPERS_PATH', __DIR__.'/helpers/');
-global $usuario;
-$usuario=false;
-
+session_start();
 ?>
 <html>
     <head>

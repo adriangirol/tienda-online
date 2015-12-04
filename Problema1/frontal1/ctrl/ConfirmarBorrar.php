@@ -1,5 +1,4 @@
 <?php
-
 include_once"\\Model\\Logica.php";
 if( ! Estadentro()){
 
@@ -12,10 +11,5 @@ if (TipoUsuario() != "administrador"){
 	include '\\ctrl\\sinacceso.php';
 	exit;
 }
-	
-$id=$_GET['id'];
-	
-	include_once(VIEW_PATH."ConfirmarBorrar.php");
-
-
-
+BorrarTarea($_GET['id']);
+include_once"\\ctrl\\listar.php";

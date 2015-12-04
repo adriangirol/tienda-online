@@ -23,7 +23,7 @@ function VPost($campo, $default='')
         return $default;
     }
 }
-function CreaArrayTareas($descripcion,$nombre,$tlf,$fin,$correo,$estado,$poblacion,$cp,$direccion,$provincia,$anoA,$anoF,$operario){
+function CreaArrayTareas($descripcion,$nombre,$tlf,$fin,$correo,$estado,$poblacion,$cp,$direccion,$provincia,$anoA,$anoF="",$operario){
 
 	$Array=array(
 			'descripcion'=>$descripcion,

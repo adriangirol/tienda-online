@@ -1,9 +1,9 @@
 <?php
 /**
- * VISTA QUE MUESTA LA LISTA DE TAREAS.
- * El controlador será el que nos proporcine en la variable $tareas
- * que contiene las tareas a mostrar
- */
+ * VISTA QUE MUESTRA EL RESULTADO DE LA CONSULTA POR ID.
+* El controlador será el que nos proporcine en la variable $tareas
+* que contiene las tareas a mostrar
+*/
 ?>
   <?php include_once "\\ctrl\\Utilidades.php"; 
    		 include_once "\\Model\\Logica.php";
@@ -76,14 +76,3 @@
 		}
 		?></table>
 		</div>
-		<footer align="center">
-			<P>
-				<?php if ($pag>1): ?>
-				<a href="?ctrl=listar&pag=<?=$pag-1?>"><input class="btn btn-warning" type="button"  value ="Atras"></input></a>
-				<?php endif; ?>
-				<?php if ($pag<$maxPag-1) :?> 
-				<a href="?ctrl=listar&pag=<?=$pag+1?>"><input class="btn btn-warning" type="button"  value ="Siguiente"></input></a>
-				<?php endif;?>
-			</P>
-		</footer>	
-	

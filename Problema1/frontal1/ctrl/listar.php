@@ -1,6 +1,14 @@
 <?php
+$HayError=false;
+$errores=[];
 /* Muesta la lista de tareas */
+if( ! Estadentro()){
 
+	$HayError=true;
+	$errores['autenticacion']="El usuario no es correcto";
+	include '\\ctrl\inicio.php';
+	exit;
+}
 include(MODEL_PATH.'tareas.php');
 include_once "\\..\\Model\\Logica.php";
 

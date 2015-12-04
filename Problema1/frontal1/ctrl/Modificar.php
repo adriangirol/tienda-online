@@ -7,7 +7,17 @@ include_once "\\Utilidades.php";
 include_once"\\Helpers\\form.php";
 $provincias=[];
 $provincias=obtenerProvincias();
+if( ! Estadentro()){
 
+	$HayError=true;
+	$errores['autenticacion']="El usuario no es correcto";
+	include '\\ctrl\inicio.php';
+	exit;
+}
+if (TipoUsuario() != "administrador"){
+	include '\\ctrl\\sinacceso.php';
+	exit;
+}
 if(!$_POST)
 {
 	

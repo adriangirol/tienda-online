@@ -40,7 +40,7 @@
 			<td> Anotacion Final</td>
 			<td>Operario</td>
 			
-		<?php 	foreach ($ListaTareas as $cod => $tarea) {
+		<?php 	foreach ($FiltroTareas as $cod => $tarea) {
 
 			echo '<tr style="font-size: x-small ;">';
 	
@@ -79,10 +79,10 @@
 		<footer align="center">
 			<P>
 				<?php if ($pag>1): ?>
-				<a href="?ctrl=listar&pag=<?=$pag-1?>"><input class="btn btn-warning" type="button"  value ="Atras"></input></a>
+				<a href="?ctrl=listarFiltro&pag=<?=$pag-1?>"><input class="btn btn-warning" type="button"  value ="Atras"></input></a>
 				<?php endif; ?>
 				<?php if ($pag<$maxPag-1) :?> 
-				<a href="?ctrl=listar&pag=<?=$pag+1?>"><input class="btn btn-warning" type="button"  value ="Siguiente"></input></a>
+				<a href="?ctrl=listarFiltro&pag=<?=$pag+1?>"><input class="btn btn-warning" type="button"  value ="Siguiente"></input></a>
 				<?php endif;?>
 			</P>
 		</footer>	

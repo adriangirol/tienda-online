@@ -1,29 +1,57 @@
 <?php
 
-function ComprobarUsuario($usuario,$clave){
+function LoginOk($user,$clave){
+    
+    if ($user =="operario" && $clave=="user")
+    {
+        $_SESSION["dentro"]= "SI";
+        $_SESSION['usuario']="operario";
+        $_SESSION["hora"]= date("H:m:s");
+       
+        return true;
+    }
+    
+    if($user == "administrador" && $clave =="admin"){
+        $_SESSION["dentro"]= "SI";
+		$_SESSION['usuario']="administrador";
+		$_SESSION["hora"]= date("H:m:s");
+		return true;
+    }
+    return false;  
+   
+}
 
-	$admin="administrador";
-	$pass_admin="admin";
+function Estadentro(){
+    if (!isset($_SESSION["dentro"]))
+    {
+    	return false;
+    }
+    if($_SESSION["dentro"]== "SI"){
+        
+        return true;
+        }
+        else {
+            return false;
+            
+        }
+}
 
-	$user="usuario";
-	$pass_user="user";
+function TipoUsuario(){
+    return $_SESSION['usuario'];
+}
 
-	if($usuario==$admin && $clave==$pass_admin)
-	{
-		
-		session_start();
-		$_SESSION["autentificado"]= "SI";
-		$_SESSION['usuario']="admin";
+function Esadministrador(){
+    
+    if($_SESSION['usuario']=="admin"){
+    return true;
+    }else 
+    {
+    return false;
+    }
+    
+}
 
-	}
-	else if($usuario==$user && $clave==$pass_user)
-	{
-		session_start();
-		$_SESSION["autentificado"]= "SI";
-		$_SESSION['usuario']="operario";
-	}
-	else {
-		$_SESSION["autentificado"]= "NO";
-	}
-
+function NombreUsuario()
+{
+    return $_SESSION['usuario'];
 }

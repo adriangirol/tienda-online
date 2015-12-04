@@ -47,7 +47,7 @@
         		
         		<tr>
 		    		<td><label for="exampleInputC">Contacto</label></td>
-		    		<td><input name ="nombre" type="text" class="form-control" id="nom" value="<?= Post('nom')?>"> </td>
+		    		<td><input name ="nombre" type="text" class="form-control" id="nom" value="<?= Post('nombre')?>"> </td>
   				
   				<tr>
 		  			<td><label for="exampleInputtlf">Telefono</label></td>

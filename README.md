@@ -48,12 +48,20 @@ Seguimiento :
 25/11/2015 -->Terminado modificar, empezar Sesion y Usuarios, Documentar, Y mejorar Aspecto.
 
 -- Semana :
-	- Sesion -->
-	- Usuarios --> 
+	- Sesion --> Ok!
+	- Usuarios --> OK!
+	- Buscar --> OK!
 
 30/11/2015 --> Empezado el autenticado de usuarios, comprobar que funciona en alta. Y implementar lo demas.	
-02/12/2015 --> 
-				
+02/12/2015 --> Terminado la parte de sesion y de usuarios. Falta implementar el acceso de cada usuario.
+03/12/2015 --> Implementado el acceso de usuarios y el cierre de sesion correcto. Empezando buscar.
+01/12/2015 --> Borrar con confirmacion terminado, Buscar Terminado.
+
+--Puente Y final de entrega:
+	- Completar con edicion de anotacion final -->OK!
+	- Documentacion con NetBeans -->
+	- Hora de los usuarios -->ok!
+	- Comprobación --> 			
 				
 				
 				
