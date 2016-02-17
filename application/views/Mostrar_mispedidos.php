@@ -1,0 +1,76 @@
+<h3>Pedidos Realizados :</h3>
+<table class="table table-condensed">
+    <tbody>
+    <?php foreach ($mispedidos as $pedido) : ?>
+     <tr class="success">
+        <!-- Aplicadas en las filas -->
+        
+       
+        <td>Codigo del pedido : <strong><?= $pedido['codigo_pedido']?></strong> </td>  
+        
+        <td>Fecha : <strong><?= $pedido['fecha']?></strong></td>
+        
+        <td>Estado : <strong><?= $pedido['Estado'] ?></strong></td>
+        <td><?php if($pedido['Estado']=="NP"){echo anchor("Entrada/CancelarPedido"," Cancelar ",Array('class' => ''));}?></td>
+       </tr>
+       <tr><td>Datos del pedido :</td></tr>
+       <tr>
+           <td align="center">Nombre</td>
+           <td align="center">Cantidad</td>
+           <td align="center">Precio</td>
+           <td align="center">Importe</td>
+       </tr>
+       <tr>
+           <?php foreach($pedido['lineas']as $linea):?>
+        
+        <td align="center"><?=$linea['Nombre']?></td>
+        <td align="center"><?=$linea['Cantidad']?></td>
+        <td align="center"><?=$linea['Precio']?></td>
+        <td align="center"><?=$linea['Importe']?></td>
+        <?php $total=$total+$linea['Importe'];?>
+       </tr>
+       
+     
+
+         <?php endforeach; ?><tr>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        
+       
+        <td align="center"><strong><?=$total?></strong></td>
+       </tr>
+      <?php $total=0;?>
+       
+    <?php endforeach; ?>
+     </tbody>              
+ </table>
+<h3>Estados del pedido</h3>
+<table class="table table-condensed">
+    <tbody>
+    
+      <tr class="warning">
+        <!-- Aplicadas en las filas -->
+        
+        <td>Np</td>
+        <td>No pagado</td>
+      </tr>
+      <tr class="warning">
+        <td>PA</td>
+        <td>Pagado</td>
+      </tr>
+      <tr class="warning">
+        <td>PE</td>
+        <td>Pendiente de envio</td>
+     </tr>
+     <tr class="warning">
+        <td>EN</td>
+        <td>Enviado</td>
+     </tr>
+          
+
+     </tbody>              
+ </table>
+
+
+
