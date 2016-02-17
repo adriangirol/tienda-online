@@ -1,0 +1,10 @@
+@CHARSET "ISO-8859-1";
+
+.Encabezado{
+	text-style: bold;
+		}
+		
+.usuario{
+	border:1px;
+	text-size: 12px;
+}
