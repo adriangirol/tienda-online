@@ -11,10 +11,10 @@ class GenerarXml extends CI_Controller {
         $this->load->model('Model_tienda', "tienda");
 
         $categorias = $this->tienda->Extraer('SELECT * FROM categorias');
-        $categoriasN=get_object_vars($categorias);
-        $xml = new SimpleXMLElement('<categorias/>');//Creamos la entrada <categorias>
+       
+        $xml = new SimpleXMLElement('<Productos_Con_sus_Categorias/>');//Creamos la entrada <categorias>
         //AQUI
-        foreach ($categoriasN as $categoria) {
+        foreach ($categorias as $categoria) {
             $xml_cat = $xml->addChild('categoria'); //Creamos etiqueta <categoria> posicionada dentro de <categorias>
             foreach ($categoria as $key => $value) {
 
@@ -22,9 +22,7 @@ class GenerarXml extends CI_Controller {
                     $xml_cat->addChild($key, utf8_encode($value)); //Añade los datos de cada categoria
                 }
             }
-            echo "<pre>";
-            print_r($categoria);
-            echo "</pre>";
+            
             $this->XMLAddCategorias($xml_cat, $categoria['Codigo']);//Añade a <categoria> sus <producto>
         }
 
@@ -38,10 +36,10 @@ class GenerarXml extends CI_Controller {
         $lista_categorias = $this->tienda->Traer_productos('Categoria_Codigo',$idCat);
         
         
-        $xml_categorias = $xml_cat->addChild('categoria'); //Crea etiqueta <camisetas> dentro de <categoria>
+        $xml_categorias = $xml_cat->addChild('Productos'); //Crea etiqueta <camisetas> dentro de <categoria>
         
         foreach ($lista_categorias as $categoria) {
-            $xml_categorias = $xml_categorias->addChild('categoria'); //Crea etiqueta <camiseta> dentro de <camisetas>
+            $xml_categorias = $xml_categorias->addChild('Producto'); //Crea etiqueta <camiseta> dentro de <camisetas>
 
             foreach ($categoria as $idx => $valor) {
                 $xml_categorias->addChild($idx, utf8_encode($valor)); //Añade a la etiqueta <camiseta>

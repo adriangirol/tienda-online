@@ -49,7 +49,7 @@ class Login extends CI_Controller {
                         //Este sera el interruptor con el cual controlaremos que los usuarios estan dentro.
                         $_SESSION['usuario_correcto']=true;
                         
-                        if($_SESSION['comprando']==""){
+                        if(!isset($_SESSION['comprando'])||$_SESSION['comprando']=="" ){
                             $cuerpo=$this->load->view('Bienvenido_view','',true);
                             $this->load->view('Index', Array('cuerpo' => $cuerpo));
                         }else

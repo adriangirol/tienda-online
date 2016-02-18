@@ -70,7 +70,7 @@ class model_tienda extends CI_Model{
     {
          $query=$this->db->query($query);
          
-          return $query->result();
+          return $query->result_array();
     }
     public function RestarStock($data,$where){
        $q='UPDATE productos
@@ -92,6 +92,10 @@ class model_tienda extends CI_Model{
     public function TraerLineasPedido($idpedido){
         $query=$this->db->query("SELECT Nombre,Cantidad,Importe,Pedidos_codigo_pedido, Precio FROM lineas_de_pedido,productos WHERE lineas_de_pedido.Productos_Codigo=productos.Codigo AND Pedidos_codigo_pedido= '".$idpedido."'");
         return $query->result_array(); 
+    }
+    public function AnularPedido($id){
+        $q='UPDATE pedidos SET Estado="AN" WHERE codigo_pedido="'.$id.'";';
+        $this->db->query($q);
     }
 }
    

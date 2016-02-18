@@ -2,7 +2,10 @@
 <table class="table table-condensed">
     <tbody>
     <?php foreach ($mispedidos as $pedido) : ?>
-     <tr class="success">
+        <?php if($pedido['Estado']=="AN")
+                echo "<tr class='danger'>";
+              else 
+                  echo "<tr class='success'>"; ?>
         <!-- Aplicadas en las filas -->
         
        
@@ -11,7 +14,7 @@
         <td>Fecha : <strong><?= $pedido['fecha']?></strong></td>
         
         <td>Estado : <strong><?= $pedido['Estado'] ?></strong></td>
-        <td><?php if($pedido['Estado']=="NP"){echo anchor("Entrada/CancelarPedido"," Cancelar ",Array('class' => ''));}?></td>
+        <td><?php if($pedido['Estado']=="NP"){echo anchor("Entrada/CancelarPedido/{$pedido['codigo_pedido']}"," Anular ");}?></td>
        </tr>
        <tr><td>Datos del pedido :</td></tr>
        <tr>
@@ -66,6 +69,10 @@
      <tr class="warning">
         <td>EN</td>
         <td>Enviado</td>
+     </tr>
+     <tr class="warning">
+        <td>AN</td>
+        <td>Anulado</td>
      </tr>
           
 

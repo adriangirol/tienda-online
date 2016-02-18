@@ -14,7 +14,10 @@
                     <p><?=$des->Descripcion?></p>
                 </div>
                <div class="ratings">
-                   <p>Stock  
+                 <?php if ($des->Stock==0){
+                 echo "<p>Sin Existencias</p>";}else
+                     echo "<p>Stock</p>"?>
+                     
                   <?php 
                     if($des->Stock >=5){
                        

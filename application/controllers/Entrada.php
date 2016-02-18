@@ -7,7 +7,7 @@ class Entrada extends CI_Controller {
     public function index() {
         $this->load->helper('url');
         $this->load->view('Index');
-        print_r($_SESSION);
+        
         
     }
 
@@ -143,7 +143,7 @@ class Entrada extends CI_Controller {
     public function Comprar(){
         $this->load->helper('url');
         $this->load->library('carrito');
-        print_r($_SESSION);
+        
          if(!isset($_SESSION['usuario_correcto']) || $_SESSION['usuario_correcto']==FALSE){
              
             $_SESSION['comprando']=true;
@@ -196,7 +196,7 @@ class Entrada extends CI_Controller {
           
           
            $nuevoStock=($stock->Stock)-($producto['cantidad']);
-           if($nuevoStock>0){
+           if($nuevoStock>=0){
            $data = "stock='". $nuevoStock."'";
            $where = " Codigo ='".$producto['id'];
            $this->tienda->RestarStock($data,$where);
@@ -248,6 +248,15 @@ class Entrada extends CI_Controller {
              
         $cuerpo= $this->load->view('Mostrar_mispedidos',Array('mispedidos'=>$mispedidos,'total'=> $total=""), true);
         $this->load->view('Index', Array('cuerpo' => $cuerpo)); 
+    }
+    public function CancelarPedido($idpedido){
+        $this->load->helper('url');
+        $this->load->model('Model_tienda', "tienda");
+       
+        $this->tienda->AnularPedido($idpedido);
+        
+        $this->Verpedidos();
+        
     }
 
 }

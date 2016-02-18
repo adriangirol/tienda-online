@@ -17,7 +17,7 @@
           <td class="success"><?= $producto['info']->Precio?></td>
           <td class="warning"><?= $producto['cantidad']?></td>
           <td class="danger"><?= $producto['total']?>€</td>
-          <?= $total=$total+$producto['total'];?>
+          <?php $total=$total+$producto['total'];?>
             
            
       </tr> 
