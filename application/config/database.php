@@ -72,9 +72,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $active_group = 'default';
 $query_builder = TRUE;
+//PARA GERION
 //hostname=Localhost
-//username= root
-//database=tienda_online
+//username= 2daw1516_adrian
+//database=2daw1516_adrian01
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
