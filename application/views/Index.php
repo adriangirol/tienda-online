@@ -107,7 +107,7 @@
          <?php if(isset($cuerpo)) {
                         echo $cuerpo;
                     }else
-                         $this->load->view('Principal');
+                        redirect("/Entrada/Destacados","location",301);
                     ?>
         <!--Fin del encabezado-->
 
