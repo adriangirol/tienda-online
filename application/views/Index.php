@@ -47,9 +47,12 @@
     
     <div align="center">
         <?php if(isset($_SESSION['usuario_correcto'])&& $_SESSION['usuario_correcto']==true ){
-                echo $_SESSION['usuario']->Nombre;
-               
-                echo anchor('Entrada/Verpedidos',' Mis pedidos ');
+           foreach($_SESSION['usuario'] as $idx=>$value){
+           echo $_SESSION['usuario'][$idx]['Nombre'];}
+             echo "&nbsp &nbsp &nbsp &nbsp ";
+             echo anchor('Login/ModificarUsuario',"Modificar Usuario",array("class"=>"btn btn-danger"));   
+             echo "&nbsp &nbsp &nbsp &nbsp ";
+                echo anchor('Entrada/Verpedidos',' Mis pedidos', array("class"=>"btn btn-success"));
         }
         ?>              
     
@@ -84,10 +87,12 @@
                     </li>
 
                     <li>
-                       <?php echo anchor('Login/verificar','Identificate');?>
+                        <?php if(!isset($_SESSION['usuario_correcto'])  || $_SESSION['usuario_correcto']==false)
+                            echo anchor('Login/verificar','Identificate');?>
                     </li>
                     <li>
-                       <?php echo anchor('Login/RecogerDatosUser','Registrese');?>
+                        <?php if(!isset($_SESSION['usuario_correcto'])  ||$_SESSION['usuario_correcto']==false)
+                            echo anchor('Login/RecogerDatosUser','Registrese');?>
                     </li>
                     <li>
                         <?php if(isset($_SESSION['usuario_correcto'])&& $_SESSION['usuario_correcto']==true ){

@@ -7,7 +7,7 @@ class Entrada extends CI_Controller {
     public function index() {
         $this->load->helper('url');
         $this->load->view('Index');
-        //Prueba Gerion
+        
         
     }
 
@@ -171,9 +171,13 @@ class Entrada extends CI_Controller {
         $this->load->model('Model_tienda', "tienda");
         $this->load->library('carrito');
          
+        foreach ($_SESSION['usuario'] as $idx=>$value)
+        {
+            $codigo=$_SESSION['usuario'][$idx]['Codigo'];
+        }
         $datosPedido=Array('fecha'=>date('Y-m-d'),
-                           'Estado'=>"NP",
-                           'Compradores_Codigo'=>$_SESSION['usuario']->Codigo);
+                           'Estado'=>"NP",//Falta poner un foreach para coger el codigo.
+                           'Compradores_Codigo'=>$codigo);
 //         echo "<pre>";
 //             print_r($datosPedido);
 //         echo"</pre>";
@@ -221,6 +225,8 @@ class Entrada extends CI_Controller {
         {
         $this->carrito->destroy();
         $_SESSION['comprando']=false;
+        //Imprimimos el pedido en PDF;
+        $this->Pdf_Para_un_Pedido();
         $cuerpo= $this->load->view('Compra_Realizada','', true);
         $this->load->view('Index', Array('cuerpo' => $cuerpo)); 
         }else
@@ -233,8 +239,11 @@ class Entrada extends CI_Controller {
     public function Verpedidos(){
         $this->load->helper('url');
         $this->load->model('Model_tienda', "tienda");
-        
-        $mispedidos=$this->tienda->Mispedidos($_SESSION['usuario']->Codigo);
+        foreach ($_SESSION['usuario']as $idx=>$value){
+            $codigo=$_SESSION['usuario'][$idx]['Codigo'];
+        }
+        $numeroPedidos=$this->tienda->ContarPedidos($codigo);
+        $mispedidos=$this->tienda->Mispedidos($codigo);
           
         foreach($mispedidos as $idx=>$pedido){
           
@@ -246,7 +255,7 @@ class Entrada extends CI_Controller {
 //             print_r($mispedidos);
 //            echo"</pre>";
              
-        $cuerpo= $this->load->view('Mostrar_mispedidos',Array('mispedidos'=>$mispedidos,'total'=> $total=""), true);
+        $cuerpo= $this->load->view('Mostrar_mispedidos',Array('mispedidos'=>$mispedidos,'total'=> $total="","numeroPedido"=>$numeroPedidos), true);
         $this->load->view('Index', Array('cuerpo' => $cuerpo)); 
     }
     public function CancelarPedido($idpedido){
@@ -257,6 +266,11 @@ class Entrada extends CI_Controller {
         
         $this->Verpedidos();
         
+    }
+    public function Pdf_Para_un_Pedido(){
+       $this->load->library('Pdf');
+       
+       $this->Pdf->Header();
     }
 
 }

@@ -78,10 +78,10 @@ class Login extends CI_Controller {
          $this->load->helper('url');
          $this->load->library('form_validation');      
          $this->load->model('Model_tienda', "tienda");//modelo de la aplicacion.
-         //
+         print_r($_SESSION);
                 //Reglas
                 $this->form_validation->set_rules('user','user', 'required');
-                $this->form_validation->set_rules('contrasena', 'contrasena', 'required');
+                if($_SESSION['modificando']==false){$this->form_validation->set_rules('contrasena', 'contrasena', 'required');}
                 $this->form_validation->set_rules('email', 'email', 'required');
                 $this->form_validation->set_rules('DNI', 'DNI', 'required');
                 $this->form_validation->set_rules('nombre', 'nombre', 'required');
@@ -98,9 +98,9 @@ class Login extends CI_Controller {
                 }
                 else
                 {
-                    $cuerpo=$this->load->view('Registrese_success','',true);
+                   if($_SESSION['modificando']==false)
+                   {
                     
-                    $this->load->view('Index', Array('cuerpo' => $cuerpo));
                     
                     
                     $login=$this->input->post('user');
@@ -111,8 +111,7 @@ class Login extends CI_Controller {
                     $direccion=$this->input->post('direccion');
                     $CP= $this->input->post('CP');
                     $provincia=$this->input->post('provincia');
-                   
-                    $this->tienda->InsertUser(array(
+                    $datos=array(
                         'DNI'=>$dni,
                         'Nombre'=>$nombre,
                         'Nombre_usuario'=>$login,
@@ -122,10 +121,44 @@ class Login extends CI_Controller {
                         'CP'=>$CP,
                         'Provincias'=>$provincia
                         
-                    ));
+                   );
+                    $this->tienda->InsertUser($datos);
+                    $_SESSION['usuario_correcto']=true;
+                    $_SESSION['usuario']=$datos;
+                    $cuerpo=$this->load->view('Registrese_success','',true);
+                    $this->load->view('Index', Array('cuerpo' => $cuerpo));
+                    
+                   }else{
+                    $login=$this->input->post('user');
+                    $email=$this->input->post('email');
+                    $dni= $this->input->post('DNI');
+                    $nombre=$this->input->post('nombre');
+                    $direccion=$this->input->post('direccion');
+                    $CP= $this->input->post('CP');
+                    $provincia=$this->input->post('provincia');
+                    
+                       $datos=array(
+                        'DNI'=>$dni,
+                        'Nombre'=>$nombre,
+                        'Nombre_usuario'=>$login,
+                        'Correo'=>$email,
+                        'Direccion'=>$direccion,
+                        'CP'=>$CP,
+                        'Provincias'=>$provincia 
+                   );
+
+                    $this->tienda->ModificarUser($_SESSION['usuario']->Codigo,$datos);
+                    $_SESSION['usuario_correcto']=true;
+                    $_SESSION['usuario']=$datos;
+                    $cuerpo=$this->load->view('Modificar_success','',true);
+                    $this->load->view('Index', Array('cuerpo' => $cuerpo));
+                   }
+                       
                     
                  
                 }
+                
+                $_SESSION['modificando']=false;
     }
     public function Salir(){
         $this->load->helper('url');
@@ -136,8 +169,14 @@ class Login extends CI_Controller {
         $_SESSION['comprando']="";
         $_SESSION['ElementosSeleccionados']="";
         $this->carrito->destroy();
+        $_SESSION['modificando']=false;
         redirect("","location",301);
          
     }
+   public function ModificarUsuario(){
+       
+       $_SESSION['modificando']=true;
+       $this->RecogerDatosUser();
+   }
 }
 ?>

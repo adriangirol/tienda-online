@@ -40,15 +40,15 @@
         
      </tr>
           <tr class="warning">
-             
-              <td><?= $_SESSION['usuario']->Nombre?> </td>  
-              <td><?= $_SESSION['usuario']->DNI?></td>
-              <td><?= $_SESSION['usuario']->Correo?></td>
-              <td><?= $_SESSION['usuario']->Direccion?></td>
-              <td><?= $_SESSION['usuario']->CP?></td>
-              <td><?= $_SESSION['usuario']->Provincias?></td>
+            <?php foreach ($_SESSION['usuario'] as $idx=> $value):?>
+              <td><?= $_SESSION['usuario'][$idx]['Nombre']?> </td>  
+              <td><?= $_SESSION['usuario'][$idx]['DNI']?></td>
+              <td><?= $_SESSION['usuario'][$idx]['Correo']?></td>
+              <td><?= $_SESSION['usuario'][$idx]['Direccion']?></td>
+              <td><?= $_SESSION['usuario'][$idx]['CP']?></td>
+              <td><?= $_SESSION['usuario'][$idx]['Provincias']?></td>
           </tr>
-
+          <?php endforeach;?>
      </tbody>              
  </table>
 <a class="btn btn-danger glyphicon glyphicon-shopping-cart"

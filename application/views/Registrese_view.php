@@ -15,17 +15,21 @@
                     *
                    </span>
                   </label>
-                  <input class="form-control" id="name" name="user" type="text"/>
+                  <input class="form-control" id="name" name="user" type="text" value="<?php if($_SESSION['modificando']=true)
+                  {foreach($_SESSION['usuario'] as $idx=>$value){
+                    echo $_SESSION['usuario'][$idx]['Nombre_usuario'];}}?>"/>
                  </div>
-                 <div class="form-group ">
-                  <label class="control-label requiredField" for="contrasena">
-                   Contrase&ntilde;a
-                   <span class="asteriskField">
-                    *
-                   </span>
-                  </label>
-                     <input class="form-control" id="contrasena" name="contrasena" type="password"/>
-                 </div>
+                 <?php if($_SESSION['modificando']=false){
+                 echo '<div class="form-group ">';
+                  echo '<label class="control-label requiredField" for="contrasena">';
+                   echo 'Contrase&ntilde;a';
+                   echo '<span class="asteriskField">';
+                   echo " *";
+                   echo "</span>";
+                  echo "</label>";
+                    echo' <input class="form-control" id="contrasena" name="contrasena" type="password"/>';
+                 echo "</div>";
+                 }?>
                  <div class="form-group ">
                   <label class="control-label requiredField" for="email">
                    Email
@@ -33,7 +37,9 @@
                     *
                    </span>
                   </label>
-                  <input class="form-control" id="email" name="email" type="text"/>
+                  <input class="form-control" id="email" name="email" type="text" value="<?php if($_SESSION['modificando']=true)
+                  {foreach($_SESSION['usuario'] as $idx=>$value){
+                     echo $_SESSION['usuario'][$idx]['Correo'];}}?>"/>
                  </div>
                  <div class="form-group ">
                   <label class="control-label requiredField" for="DNI">
@@ -42,7 +48,9 @@
                     *
                    </span>
                   </label>
-                  <input class="form-control" id="DNI" name="DNI" type="text"/>
+                  <input class="form-control" id="DNI" name="DNI" type="text" value="<?php if($_SESSION['modificando']=true)
+                  {foreach($_SESSION['usuario'] as $idx=>$value){
+                    echo $_SESSION['usuario'][$idx]['DNI'];}}?>"/>
                  </div>
                  <div class="form-group ">
                   <label class="control-label requiredField" for="nombre">
@@ -51,7 +59,9 @@
                     *
                    </span>
                   </label>
-                  <input class="form-control" id="name3" name="nombre" type="text"/>
+                  <input class="form-control" id="name3" name="nombre" type="text" value="<?php if($_SESSION['modificando']=true)
+                  {foreach($_SESSION['usuario'] as $idx=>$value){
+                    echo $_SESSION['usuario'][$idx]['Nombre'];}}?>" />
                  </div>
                  <div class="form-group ">
                   <label class="control-label requiredField" for="direccion">
@@ -60,7 +70,9 @@
                     *
                    </span>
                   </label>
-                  <input class="form-control" id="direccion" name="direccion" placeholder="C/ -N&ordm;" type="text"/>
+                  <input class="form-control" id="direccion" name="direccion" placeholder="C/ -N&ordm;" type="text" value="<?php if($_SESSION['modificando']=true)
+                  {foreach($_SESSION['usuario'] as $idx=>$value){
+                    echo $_SESSION['usuario'][$idx]['Direccion'];}}?>"/>
                  </div>
                  <div class="form-group ">
                   <label class="control-label requiredField" for="CP">
@@ -69,7 +81,9 @@
                     *
                    </span>
                   </label>
-                  <input class="form-control" id="CP" name="CP" type="text"/>
+                  <input class="form-control" id="CP" name="CP" type="text" value="<?php if($_SESSION['modificando']=true)
+                  {foreach($_SESSION['usuario'] as $idx=>$value){
+                    echo $_SESSION['usuario'][$idx]['CP'];}}?>"/>
                  </div>
                  <div class="form-group ">
                    <label class="control-label requiredField" for="provincia">
@@ -78,7 +92,9 @@
                      *
                     </span>
                    </label>
-                   <input class="form-control" id="direccion" name="provincia" placeholder="C/ -N&ordm;" type="text"/>
+                   <input class="form-control" id="direccion" name="provincia" placeholder="C/ -N&ordm;" type="text" value="<?php if($_SESSION['modificando']=true)
+                  {foreach($_SESSION['usuario'] as $idx=>$value){
+                     echo $_SESSION['usuario'][$idx]['Provincias'];}}?>"/>
                  </div>
                  <div class="form-group">
                   <div>

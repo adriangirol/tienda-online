@@ -1,13 +1,17 @@
 <h3>Pedidos Realizados :</h3>
 <table class="table table-condensed">
     <tbody>
-    <?php foreach ($mispedidos as $pedido) : ?>
+        
+        
+    <?php  if($numeroPedido==0){echo "No existen pedidos";}
+    else{
+    foreach ($mispedidos as $pedido) : ?>
         <?php if($pedido['Estado']=="AN")
                 echo "<tr class='danger'>";
               else 
                   echo "<tr class='success'>"; ?>
         <!-- Aplicadas en las filas -->
-        
+         
        
         <td>Codigo del pedido : <strong><?= $pedido['codigo_pedido']?></strong> </td>  
         
@@ -40,12 +44,12 @@
         <td> </td>
         <td> </td>
         
-       
+       ?>
         <td align="center"><strong><?=$total?></strong></td>
        </tr>
       <?php $total=0;?>
        
-    <?php endforeach; ?>
+    <?php endforeach; }?>
      </tbody>              
  </table>
 <h3>Estados del pedido</h3>

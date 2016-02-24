@@ -50,13 +50,17 @@ class model_tienda extends CI_Model{
       
          $query=$this->db->query("SELECT *  FROM compradores WHERE Nombre_usuario = '".$login."'");
          
-          return $query->row();
+          return $query->result_array();
         
     }
     
     public function InsertUser($datos){
        
        $this->db->insert('compradores',$datos);
+    }
+    public function ModificarUser($id,$datos){
+        $this->db->where('Codigo', $id);
+        $this->db->update('compradores', $datos); 
     }
     public function NuevoPedido($datos){
         
@@ -96,6 +100,10 @@ class model_tienda extends CI_Model{
     public function AnularPedido($id){
         $q='UPDATE pedidos SET Estado="AN" WHERE codigo_pedido="'.$id.'";';
         $this->db->query($q);
+    }
+    public function ContarPedidos($id){
+         $query=$this->db->query("SELECT count(*) as 'total' FROM pedidos WHERE Compradores_Codigo = '".$id."'");
+        return $query->row()->total;
     }
 }
    
