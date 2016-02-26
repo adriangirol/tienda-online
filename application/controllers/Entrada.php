@@ -171,12 +171,11 @@ class Entrada extends CI_Controller {
         $this->load->model('Model_tienda', "tienda");
         $this->load->library('carrito');
          
-        foreach ($_SESSION['usuario'] as $idx=>$value)
-        {
-            $codigo=$_SESSION['usuario'][$idx]['Codigo'];
-        }
+        
+            $codigo=$this->tienda->ObtenerCodigo($_SESSION['usuario']['Nombre_usuario']);
+            print_r( $codigo);
         $datosPedido=Array('fecha'=>date('Y-m-d'),
-                           'Estado'=>"NP",//Falta poner un foreach para coger el codigo.
+                           'Estado'=>"NP",
                            'Compradores_Codigo'=>$codigo);
 //         echo "<pre>";
 //             print_r($datosPedido);
@@ -221,14 +220,16 @@ class Entrada extends CI_Controller {
             
             
         }
-        if($SuperaSTOCK==false)
+        if(!isset($SuperaSTOCK) || $SuperaSTOCK==false)
         {
-        $this->carrito->destroy();
-        $_SESSION['comprando']=false;
-        //Imprimimos el pedido en PDF;
-        $this->Pdf_Para_un_Pedido();
-        $cuerpo= $this->load->view('Compra_Realizada','', true);
-        $this->load->view('Index', Array('cuerpo' => $cuerpo)); 
+            //Imprimimos el pedido en PDF;
+            $_SESSION['Fin_Compra']=true;
+            $this->ImprimirPedidoPDE($cod_pedido);
+            $this->carrito->destroy();//limpiamos la session para nueva compra.
+           //Envio de correo con pdf
+            $this->EnviaCorreo($cod_pedido,$_SESSION['usuario']['Correo']);
+             $_SESSION['comprando']=false;
+            
         }else
         {
             $cuerpo= $this->load->view('Error_compra_Stock','', true);
@@ -239,9 +240,7 @@ class Entrada extends CI_Controller {
     public function Verpedidos(){
         $this->load->helper('url');
         $this->load->model('Model_tienda', "tienda");
-        foreach ($_SESSION['usuario']as $idx=>$value){
-            $codigo=$_SESSION['usuario'][$idx]['Codigo'];
-        }
+        $codigo=$_SESSION['usuario']['Codigo'];
         $numeroPedidos=$this->tienda->ContarPedidos($codigo);
         $mispedidos=$this->tienda->Mispedidos($codigo);
           
@@ -267,10 +266,51 @@ class Entrada extends CI_Controller {
         $this->Verpedidos();
         
     }
-    public function Pdf_Para_un_Pedido(){
-       $this->load->library('Pdf');
-       
-       $this->Pdf->Header();
+    public function ImprimirPedidoPDE($idpedido){
+        $this->load->library('Pdf');
+        $this->load->model('Model_tienda', "tienda");
+        
+        $pedidoCompleto=$this->tienda->TraerUnpedido($idpedido);
+        
+        foreach($pedidoCompleto as $idx=>$pedido){
+          
+          $pedidoCompleto[$idx]['lineas']=$this->tienda->TraerLineasPedido($pedidoCompleto[$idx]['codigo_pedido']);
+        }
+//          echo "<pre>";
+//           print_r($pedidoCompleto);
+//          echo"</pre>";
+        $this->pdf->ImprimirPdf($pedidoCompleto);
+        
     }
-
+    
+    /**
+     * Enviar correo con el pdf.
+     */
+    public function EnviaCorreo($codigopedido,$mail)
+	{
+                $this->load->library('email');
+		$this->email->from('aula4@iessansebastian.com', 'Datos del pedido Can and Cat');
+		$this->email->to($mail); 
+		//$this->email->cc('another@another-example.com'); 
+		//$this->email->bcc('them@their-example.com'); 
+		
+		$this->email->subject('Datos del pedido');
+		$this->email->attach('asset/pedidos/pedido_'.$codigopedido.".pdf");
+		
+		if ( $this->email->send() )
+		{
+			$cuerpo= $this->load->view('Compra_Realizada','', true);
+                        $this->load->view('Index', Array('cuerpo' => $cuerpo));
+		}
+		else 
+		{
+			echo "</pre>\n\n**** Compra realizada , fallo al enviar correo ****</pre>\n";
+		}
+		
+		echo $this->email->print_debugger();
+                 //Mostramos compra realizada.
+            
+	}
 }
+
+

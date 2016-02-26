@@ -42,10 +42,8 @@ class Login extends CI_Controller {
                     if($Usuario==true){
                         
                         $datosUser=$this->tienda->traer_usuario($login);
-                        $_SESSION['usuario']=$datosUser;
-//                        echo "<pre>";
-//                        print_r($_SESSION['usuario']);
-//                        echo "</pre>";
+                        $User = get_object_vars($datosUser);
+                        $_SESSION['usuario']=$User;
                         //Este sera el interruptor con el cual controlaremos que los usuarios estan dentro.
                         $_SESSION['usuario_correcto']=true;
                         
@@ -78,10 +76,14 @@ class Login extends CI_Controller {
          $this->load->helper('url');
          $this->load->library('form_validation');      
          $this->load->model('Model_tienda', "tienda");//modelo de la aplicacion.
-         print_r($_SESSION);
-                //Reglas
+            echo "<pre>";
+            print_r($_SESSION);
+            echo "</pre>";
+            //Reglas
                 $this->form_validation->set_rules('user','user', 'required');
-                if($_SESSION['modificando']==false){$this->form_validation->set_rules('contrasena', 'contrasena', 'required');}
+                if(!isset($_SESSION['modificando'])|| $_SESSION['modificando']==false){
+                    $this->form_validation->set_rules('contrasena', 'contrasena', 'required');
+                }
                 $this->form_validation->set_rules('email', 'email', 'required');
                 $this->form_validation->set_rules('DNI', 'DNI', 'required');
                 $this->form_validation->set_rules('nombre', 'nombre', 'required');
@@ -98,11 +100,11 @@ class Login extends CI_Controller {
                 }
                 else
                 {
-                   if($_SESSION['modificando']==false)
+                   if($_SESSION['modificando']==false ||$_SESSION['modificando']=="" )
                    {
                     
                     
-                    
+                    //Recogemos los datos para insertar.
                     $login=$this->input->post('user');
                     $contrasena=$this->input->post('contrasena');
                     $email=$this->input->post('email');
@@ -111,24 +113,40 @@ class Login extends CI_Controller {
                     $direccion=$this->input->post('direccion');
                     $CP= $this->input->post('CP');
                     $provincia=$this->input->post('provincia');
+                    //Metemos los datos en un array para la inserccion.
                     $datos=array(
                         'DNI'=>$dni,
                         'Nombre'=>$nombre,
                         'Nombre_usuario'=>$login,
-                        'Contraseña'=>$contrasena,
+                        'Contrasena'=>$contrasena,
                         'Correo'=>$email,
                         'Direccion'=>$direccion,
                         'CP'=>$CP,
                         'Provincias'=>$provincia
                         
                    );
+                    //antes de insertar comprobamos que el login no es repetido
+                    $repetido=$this->tienda->usuarioRepetido($login);
+                    echo $repetido;
+                    if($repetido==0){
                     $this->tienda->InsertUser($datos);
                     $_SESSION['usuario_correcto']=true;
                     $_SESSION['usuario']=$datos;
+                    echo "datos de usuario";
+                    print_r($_SESSION['usuario']);
                     $cuerpo=$this->load->view('Registrese_success','',true);
                     $this->load->view('Index', Array('cuerpo' => $cuerpo));
-                    
+                    }
+                    else
+                    {
+                        
+                        //si esta repetido volvemos a cojer los datos de usuario.
+                        $_SESSION['usuarioRepetido']=true;
+                        $cuerpo=$this->load->view('Registrese_success','',true);
+                        $this->load->view('Index', Array('cuerpo' => $cuerpo));
+                    }
                    }else{
+                       
                     $login=$this->input->post('user');
                     $email=$this->input->post('email');
                     $dni= $this->input->post('DNI');
@@ -146,8 +164,8 @@ class Login extends CI_Controller {
                         'CP'=>$CP,
                         'Provincias'=>$provincia 
                    );
-
-                    $this->tienda->ModificarUser($_SESSION['usuario']->Codigo,$datos);
+                    print_r($_SESSION['usuario']);
+                    $this->tienda->ModificarUser($_SESSION['usuario']['Nombre'],$datos);
                     $_SESSION['usuario_correcto']=true;
                     $_SESSION['usuario']=$datos;
                     $cuerpo=$this->load->view('Modificar_success','',true);

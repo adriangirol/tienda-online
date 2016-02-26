@@ -19,7 +19,8 @@
         
         <td>Estado : <strong><?= $pedido['Estado'] ?></strong></td>
         <td><?php if($pedido['Estado']=="NP"){echo anchor("Entrada/CancelarPedido/{$pedido['codigo_pedido']}"," Anular ");}?></td>
-       </tr>
+        <td><?php echo anchor("Entrada/ImprimirPedidoPDE/{$pedido['codigo_pedido']}","Imprimir Pdf")?>
+        </tr>
        <tr><td>Datos del pedido :</td></tr>
        <tr>
            <td align="center">Nombre</td>
@@ -44,7 +45,7 @@
         <td> </td>
         <td> </td>
         
-       ?>
+       
         <td align="center"><strong><?=$total?></strong></td>
        </tr>
       <?php $total=0;?>

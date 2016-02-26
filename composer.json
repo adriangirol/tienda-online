@@ -12,7 +12,8 @@
 	},
 	"require": {
 		"php": ">=5.2.4",
-		"itbz/fpdf": "dev-master"
+		"itbz/fpdf": "dev-master",
+		"setasign/fpdf": "dev-master"
 	},
 	"require-dev": {
 		"mikey179/vfsStream": "1.1.*"

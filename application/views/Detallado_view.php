@@ -40,12 +40,12 @@
 </div>
 <div class="row">
  <div class="col-sm-4 col-lg-4 col-md-4"></div>
-
-        <div class="col-sm-4 col-lg-4 col-md-4">
-            <div class="thumbnail">
-                <div class="caption">
-                       <div class="col-xs-3">
-                        <p>Cantidad </p>
+ <?php if($des->Stock>0): ?>
+       <div class="col-sm-4 col-lg-4 col-md-4">
+         <div class="thumbnail">
+             <div class="caption">
+                 <div class="col-xs-3">
+                     <p>Cantidad </p>
                        </div> 
                        <div class="col-xs-3">
                         <input type="number" min="0" max="<?=$ran?>" name="cantidad"class="form-control" >
@@ -58,7 +58,7 @@
             </div>
         </div>
  </form>
-    
+ <?php endif;?>
            
 <?php endforeach; ?>
  

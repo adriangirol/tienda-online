@@ -47,15 +47,15 @@
     
     <div align="center">
         <?php if(isset($_SESSION['usuario_correcto'])&& $_SESSION['usuario_correcto']==true ){
-           foreach($_SESSION['usuario'] as $idx=>$value){
-           echo $_SESSION['usuario'][$idx]['Nombre'];}
+           echo "<h3><font color='Grey'>". $_SESSION['usuario']['Nombre']."</font></h3>";
              echo "&nbsp &nbsp &nbsp &nbsp ";
              echo anchor('Login/ModificarUsuario',"Modificar Usuario",array("class"=>"btn btn-danger"));   
              echo "&nbsp &nbsp &nbsp &nbsp ";
                 echo anchor('Entrada/Verpedidos',' Mis pedidos', array("class"=>"btn btn-success"));
         }
         ?>              
-    
+        <br>
+        <br>
     <!-- Menu-->
     <!-- Navigation -->
     <nav class="navbar navbar-default" role="navigation">
